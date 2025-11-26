@@ -4,39 +4,7 @@
 
 @layer base {
   :root {
-    --background: 210 40% 96.1%; /* Slate 50 */
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 24.6 95% 53.1%; /* Orange 500 */
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 151.8 81.4% 39.4%; /* Emerald 500 */
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 24.6 95% 53.1%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 84% 4.9%; /* Deep Navy Background */
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -45,10 +13,10 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 24.6 95% 53.1%;
+    --primary: 38 92% 50%; /* Solar Gold */
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 151.8 81.4% 39.4%;
+    --secondary: 151.8 81.4% 39.4%; /* Eco Emerald */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -62,7 +30,9 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 24.6 95% 53.1%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
   }
 }
 
@@ -71,6 +41,42 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-dark-950 text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(245, 158, 11, 0.08), transparent 25%), 
+        radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08), transparent 25%);
+    background-attachment: fixed;
   }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-dark-800/40 backdrop-blur-md border border-white/5 shadow-lg hover:border-primary/30 transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600;
+  }
+  
+  .text-gradient-secondary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary-400 to-secondary-600;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-700 rounded-full hover:bg-dark-600 transition-colors;
 }
